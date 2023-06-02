@@ -7,7 +7,7 @@ const app=express();
 
 app.use('/post',postRoutes)
 
-app.get('/go',function(req,res){
+app.get('/goo',function(req,res){
     res.send("this also work")
 })
 
