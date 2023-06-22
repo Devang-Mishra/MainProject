@@ -6,6 +6,7 @@ import {Provider} from 'react-redux';
 import { legacy_createStore as createstore , applyMiddleware,compose} from 'redux';
 import thunk from 'redux-thunk';
 import reducers from './reducers'
+import './index.css'
 
 const theme=createTheme();//creating default theme
 

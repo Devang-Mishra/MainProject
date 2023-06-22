@@ -5,12 +5,12 @@ import Form from './components/Form/Form'
 import icon from './Images/icon2.png'
 import useStyles from './styles'
 import { useDispatch } from 'react-redux'
-import { useEffect } from 'react'
+import { useState,useEffect } from 'react'
 import {getPosts} from './actions/posts'
 const App = () => {
   const classes=useStyles();
   const dispatch=useDispatch();
-     
+  const [currentId,setcurrentId] = useState(null);   
   useEffect(()=>{
       dispatch(getPosts());
   },[dispatch]) //componentwillupdate behaviour .dispatching the action is preffered in useeffect 
@@ -25,12 +25,12 @@ const App = () => {
             </AppBar>
             <Grow in>
                <Container>
-                  <Grid container justifyContent="space-between" alignItems="stretch"  spacing="3">
+                  <Grid container justifyContent="space-between" alignItems="stretch"  spacing={3}>
                          <Grid item xs={12} sm={7}> 
-                             <Posts/>
+                             <Posts setcurrentId={setcurrentId} />
                          </Grid>
                          <Grid item xs={12} sm={4}>
-                             <Form/>
+                             <Form currentId={currentId} setcurrentId={setcurrentId}/>{/*Passing noth currentId ans setcurrentId as props to the component*/}
                          </Grid>
                   </Grid>
                </Container>
