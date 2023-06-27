@@ -29,21 +29,22 @@ const Form = ({currentId,setcurrentId}) => {
      else{
        dispatch(createPost(postData)); 
      } 
-     
+     clear()
   }
 
   const clear=()=>{
-
+     setcurrentId(null);
+     setpostData({creator:'',title:'',message:'',tags:'',selectedFile:''});
   }
   return (
     <div>
       <Paper className={classes.paper}>
          <form autoComplete='off' noValidate className={`${classes.root} ${classes.form}`} onSubmit={handleSubmit}>
-               <Typography variant='h6'>Creating a Memory</Typography>
+               <Typography variant='h6'>{currentId ? "Editing" : "Creating"} a Post</Typography>
                <TextField name="creator" variant='outlined' label='Creator' fullWidth value={postData.creator} onChange={(e)=>setpostData({...postData , creator: e.target.value})} />
                <TextField name="title" variant='outlined' label='Title' fullWidth value={postData.title} onChange={(e)=>setpostData({...postData , title: e.target.value})} />
                <TextField name="message" variant='outlined' label='Message' fullWidth value={postData.message} onChange={(e)=>setpostData({...postData , message: e.target.value})} />
-               <TextField name="tags" variant='outlined' label='Tags' fullWidth value={postData.tags} onChange={(e)=>setpostData({...postData , tags: e.target.value})} />
+               <TextField name="tags" variant='outlined' label='Tags' fullWidth value={postData.tags} onChange={(e)=>setpostData({...postData , tags: e.target.value.split(',')})} />{/*we are spliting the string that we get from e.target.value int array of items which were separated by , in the main string */}
                <div className={classes.fileInput}>
                  <FileBase type="file" multiple={false} onDone={({base64})=> setpostData({...postData,selectedFile: base64})} fullWidth/>{/*destruicting the base 64 form e value which  we pass in the arrow function of onDone handler instead of passing whole event*/}
                </div>
