@@ -13,7 +13,7 @@ const App = () => {
   const [currentId,setcurrentId] = useState(null);   
   useEffect(()=>{
       dispatch(getPosts());
-  },[dispatch]) //componentwillupdate behaviour .dispatching the action is preffered in useeffect 
+  },[currentId,dispatch]) //componentwillupdate behaviour .dispatching the action is preffered in useeffect 
 
   return (
         <Container maxWidth='lg'>
@@ -25,7 +25,7 @@ const App = () => {
             </AppBar>
             <Grow in>
                <Container>
-                  <Grid container justifyContent="space-between" alignItems="stretch"  spacing={3}>
+                  <Grid   container  justifyContent="space-between" alignItems="stretch"  spacing={3}>
                          <Grid item xs={12} sm={7}> 
                              <Posts setcurrentId={setcurrentId} />
                          </Grid>

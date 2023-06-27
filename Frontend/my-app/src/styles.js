@@ -1,7 +1,7 @@
 
 import { makeStyles } from "@mui/styles";
 
-export default makeStyles(() => ({
+export default makeStyles((theme) => ({
     appBar: {
       borderRadius: 15,
       margin: '30px 0',
@@ -17,4 +17,12 @@ export default makeStyles(() => ({
       marginLeft: '15px',
       marginBottom:'5px'
     },
+    [theme.breakpoints.down('sm')]:{
+       mainContainer:{
+       display: 'flex',
+       direction: 'column-reverse'    
+    } 
+    }
+   
+  
   }));
