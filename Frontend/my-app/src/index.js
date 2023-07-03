@@ -10,6 +10,7 @@ import './index.css'
 
 const theme=createTheme();//creating default theme
 
+
 const store=createstore(reducers,compose(applyMiddleware(thunk)))
 //creating a redux store with rootreducer as reducers and using a middleware thunk which enables us to return function in action creators instead of plain action object(asyncronous behaviour).the applymiddleware is a enhancer which enables us to use thunk.compose is used to combine multiple enhancers into single enhancer
 

@@ -11,7 +11,7 @@ const Post = ({post ,setcurrentId}) => {
   const classes=useStyles()
   const dispatch=useDispatch();
   return (
-      <Card className={classes.card} >
+      <Card sx={{borderRadius: 3.5}} className={classes.card} >
         <CardMedia className={classes.media} image={post.selectedFile} title={post.title}/>
          
          <div className={classes.overlay}>
