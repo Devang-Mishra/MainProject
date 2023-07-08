@@ -3,11 +3,19 @@ import {Avatar,Button,Paper,Grid,Typography,Container} from '@mui/material'
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined'
 import useStyles from './styles'
 import Input from './input'
+// import Icon from './icon'
+import { GoogleLogin,googleLogout } from '@react-oauth/google'
+import jwt_decode from 'jwt-decode'
+import {useDispatch} from 'react-redux'
+import {useNavigate} from 'react-router-dom'
+
 
 const Auth = () => {
   const classes=useStyles();
   const [isSignup,setisSignup]=useState(false);
   const [showPassword,setshowPassword]=useState(false);
+  const dispatch=useDispatch();
+  const navigate=useNavigate();
   const handleSubmit=()=>{
 
   }
@@ -15,14 +23,35 @@ const Auth = () => {
   const handleChange=()=>{
 
   }
+
   const switchMode=()=>{
     setisSignup((previsSignup)=>!previsSignup)
     setshowPassword(false)
   }
 
+
+  const googleSuccess= async (res)=>{
+      var decodeddata=jwt_decode(res.credential)
+      const result=decodeddata;
+     
+      try {
+        await dispatch({type: 'AUTH',data:{result}})
+         navigate('/')
+        
+      } catch (error) {
+        console.log(error)
+      }
+
+  }
+
+  const googleFailure=(error)=>{
+    console.log(error)
+    console.log("Google Sign In was unsuccesfull. Try Again Later")
+  }
   const handleShowPassword=()=> setshowPassword((prevShowPassword)=> !prevShowPassword)
 
   return (
+  
      <Container component="main" maxWidth="xs">
        <Paper className={classes.paper} elevation={3}>
          <Avatar sx={{bgcolor:'#f20a57'}} className={classes.avatar}>
@@ -43,12 +72,19 @@ const Auth = () => {
            <Input name='password' label='Password' handleChange={handleChange} type={showPassword ? "text" : "password"} handleShowPassword={handleShowPassword} />
            {isSignup && <Input name="confirmPassword" label="Repeat Password" handleChange={handleChange} type="password"/>}
           </Grid>
-          <Button sx={{marginTop: '15px'}} type="submit" fullWidth variant="contained" color='primary'>
+
+          <Grid container sx={{marginTop:'10px'}} justifyContent='center'>
+             <Grid item>
+                  <GoogleLogin  onSuccess={googleSuccess} onError={googleFailure}/>
+             </Grid>
+          </Grid>
+
+           <Button sx={{marginTop: '15px',marginBottom: '10px'}} type="submit" fullWidth variant="contained" color='primary'>
               {isSignup ? 'Sign Up' : 'Sign In'}
           </Button>
-          <Grid container justifyContent='flex-end'>
+          <Grid container justifyContent='center'>
              <Grid item>
-                <Button sx={{color:'#6e6a6c',marginTop:'5px'}} onClick={switchMode}>
+                <Button sx={{color:'#6e6a6c',marginTop:'5px', fontSize: '12px'}} onClick={switchMode}>
                  {isSignup? 'Already have an accoint? Sign In' : "Don't have an account? Sign Up"}
                 </Button>
              </Grid>

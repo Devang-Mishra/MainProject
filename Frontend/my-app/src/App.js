@@ -4,11 +4,13 @@ import Navbar from './components/Navbar/Navbar'
 import {Container}  from '@mui/material'
 import { BrowserRouter,Routes,Route } from 'react-router-dom'
 import Auth from './components/Auth/Auth'
+import {GoogleOAuthProvider} from '@react-oauth/google'
 
 const App = () => {
    
 
   return (
+      <GoogleOAuthProvider clientId='532792372169-npll3bb89klm4ittamembgtkqbq411o2.apps.googleusercontent.com'>
        <BrowserRouter>
           <Container maxWidth='lg'>
             <Navbar/> 
@@ -18,7 +20,7 @@ const App = () => {
                </Routes>  
          </Container>
        </BrowserRouter>
-       
+      </GoogleOAuthProvider>
   )
 }
 

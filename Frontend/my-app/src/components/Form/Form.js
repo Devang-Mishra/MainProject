@@ -49,7 +49,7 @@ const Form = ({currentId,setcurrentId}) => {
                  <FileBase type="file" multiple={false} onDone={({base64})=> setpostData({...postData,selectedFile: base64})} fullWidth/>{/*destruicting the base 64 form e value which  we pass in the arrow function of onDone handler instead of passing whole event*/}
                </div>
                <Button className={classes.buttonSubmit} color='primary'  variant='contained'  size='medium' type='submit' fullWidth>Submit</Button>
-               <Button sx={{marginTop :'8px', backgroundColor:'#ed1f6e'}} variant='contained' color='secondary' size='small' onClick={clear} fullWidth>Clear</Button>
+               <Button sx={{marginTop :'8px', backgroundColor:'#ed1f6e'}} variant='contained'  size='small' onClick={clear} fullWidth>Clear</Button>
          </form>
       </Paper>
     </div>
