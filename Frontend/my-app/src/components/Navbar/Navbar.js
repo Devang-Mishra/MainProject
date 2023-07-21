@@ -5,6 +5,7 @@ import icon from "../../Images/icon3.png";
 import {Link} from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { useNavigate,useLocation } from "react-router-dom";
+import decode from 'jwt-decode'
 const Navbar = () => {
   const classes = useStyles();
   const [user,setUser]=useState(JSON.parse(localStorage.getItem('profile')));
@@ -13,15 +14,20 @@ const Navbar = () => {
   const location=useLocation();
   const logout=()=>{
       dispatch({type:'LOGOUT'});
-      navigate('/');
+      navigate('/auth');
       setUser(null);
   }
   
   useEffect(()=>{
-    //  const token=user?.token;
+     const token=user?.token;
+     if(token){
+      const decodedToken=decode(token);
+
+      if(decodedToken.exp * 1000 < new Date().getTime()) logout();
+     }
 
      setUser(JSON.parse(localStorage.getItem('profile')));
-  },[location]);
+  },[location]); 
 
   return (
     <AppBar className={classes.appBar} position="static" color="inherit">

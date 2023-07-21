@@ -1,41 +1,56 @@
-import React,{useState} from 'react'
+import React,{useState,useEffect} from 'react'
 import {Avatar,Button,Paper,Grid,Typography,Container} from '@mui/material'
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined'
 import useStyles from './styles'
 import Input from './input'
 // import Icon from './icon'
-import { GoogleLogin,googleLogout } from '@react-oauth/google'
+import { GoogleLogin} from '@react-oauth/google'
 import jwt_decode from 'jwt-decode'
 import {useDispatch} from 'react-redux'
 import {useNavigate} from 'react-router-dom'
+import {signup,signin} from '../../actions/auth'
 
-
+const initialState={firstName:'',lastName:'',email:'',password:'',confirmPassword:''}
+const user=JSON.parse(localStorage.getItem('profile'));
 const Auth = () => {
   const classes=useStyles();
   const [isSignup,setisSignup]=useState(false);
   const [showPassword,setshowPassword]=useState(false);
+  const [formData,setFormData]=useState(initialState);
   const dispatch=useDispatch();
   const navigate=useNavigate();
-  const handleSubmit=()=>{
+  const handleSubmit=(e)=>{
+    e.preventDefault();
+    // console.log(formData);
+  
+    if(isSignup){
+        dispatch(signup(formData,navigate));
+    }
+    else{
+        dispatch(signin(formData,navigate));
 
+    } 
   }
 
-  const handleChange=()=>{
-
+  const handleChange=(e)=>{
+     setFormData({...formData,[e.target.name]:e.target.value});
   }
 
   const switchMode=()=>{
-    setisSignup((previsSignup)=>!previsSignup)
+    setFormData(initialState)
+    setisSignup((previousSignup)=>!previousSignup)
     setshowPassword(false)
   }
 
 
   const googleSuccess= async (res)=>{
+      // console.log(res);
       var decodeddata=jwt_decode(res.credential)
       const result=decodeddata;
+      const token=res.credential;
      
       try {
-        await dispatch({type: 'AUTH',data:{result}})
+         await dispatch({type: 'AUTH',data:{result,token}})
          navigate('/')
         
       } catch (error) {
