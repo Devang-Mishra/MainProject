@@ -12,7 +12,8 @@ export default makeStyles((theme) => ({
     padding: '10px 10px',
   },
   heading: {
-    color: '#d5d5d5',
+    fontFamily: 'monospace',
+    color: '#313233',
     textDecoration:'none'
   },
   image: {
@@ -41,7 +42,15 @@ export default makeStyles((theme) => ({
     backgroundColor: deepPurple[500],
     marginRight:'5px'
   },
+  textlogo:{
+    height: '65px',
+    width: '180px'
+  },
   [theme.breakpoints.down('sm')]:{
+    textlogo:{
+    height: '40px',
+    width: '90px'
+    },
     heading:{
       color: '###4e4e52'
     },

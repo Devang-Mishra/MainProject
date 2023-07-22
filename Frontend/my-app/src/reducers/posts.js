@@ -10,7 +10,8 @@ const postsreducer= (posts=[],action)=>{
          return posts.map((post)=> (post._id === action.payload._id) ? action.payload : post)  ;
        case 'FETCH_ALL':                    
          return action.payload;
-        
+       case 'FETCH_POST':
+         return {post:action.payload};
        case 'CREATE':
          return [...posts,action.payload];
        default:

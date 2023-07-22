@@ -6,6 +6,7 @@ import {Link} from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { useNavigate,useLocation } from "react-router-dom";
 import decode from 'jwt-decode'
+import textlogo from '../../Images/txtlogo.png'
 const Navbar = () => {
   const classes = useStyles();
   const [user,setUser]=useState(JSON.parse(localStorage.getItem('profile')));
@@ -28,25 +29,24 @@ const Navbar = () => {
 
      setUser(JSON.parse(localStorage.getItem('profile')));
   },[location]); 
-
   return (
     <AppBar className={classes.appBar} position="static" color="inherit">
       <Toolbar>
       
         <Typography component="a" href='/' className={classes.heading} sx={{ typography: {sm:'h2',xs:'h5'}, flexGrow:1,marginRight:'40px'}} >
-          Memories
-          <img className={classes.image} src={icon} alt="memories" height="50" />
+        <img src={textlogo} className={classes.textlogo} alt="PostEra" />
+        
         </Typography>
          
         
         {user? (
              <div className={classes.profile}>
                   <Avatar className={classes.purple} alt={user.result.name} src={user.result.picture}>{user.result.name.charAt(0)}</Avatar>
-                  <Typography  className={classes.userName} variant='h6'>{user.result.name}</Typography>
-                  <Button  variant="contained" sx={{backgroundColor:'#ed1f6e',marginRight:'40px',marginLeft:'20px'}} className={classes.logout} onClick={logout} >Logout</Button>
+                  <Typography  className={classes.userName} variant='h5'>{user.result.name}</Typography>
+                  <Button size='medium' variant="contained" sx={{backgroundColor:'#ed1f6e',marginRight:'40px',marginLeft:'20px'}} className={classes.logout} onClick={logout} >Logout</Button>
              </div>
         ) : (
-               <Button  size="small" component={Link} to="/auth" variant="contained" color="primary">Sign In</Button>
+               <Button  size="medium" component={Link} to="/auth" variant="contained" color="primary">Sign In</Button>
         )}
       </Toolbar>
     
