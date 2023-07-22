@@ -17,6 +17,22 @@ import * as api from '../api';
     }
 };
 
+export const getPost= (id) => async (dispatch) => {
+    try
+    {
+        const {data}= await api.fetchPost(id);
+        // console.log(data);
+        dispatch({
+            type: 'FETCH_POST',
+            payload: data,
+        })  
+    }
+    catch(error)
+    {
+        console.log(error)
+    }
+};
+
 export const createPost = (post) => async (dispatch)=> {
    try {
     
