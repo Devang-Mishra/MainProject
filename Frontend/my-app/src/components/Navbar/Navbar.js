@@ -43,7 +43,7 @@ const Navbar = () => {
              <div className={classes.profile}>
                   <Avatar className={classes.purple} alt={user.result.name} src={user.result.picture}>{user.result.name.charAt(0)}</Avatar>
                   <Typography  className={classes.userName} variant='h5'>{user.result.name}</Typography>
-                  <Button size='medium' variant="contained" sx={{backgroundColor:'#ed1f6e',marginRight:'40px',marginLeft:'20px'}} className={classes.logout} onClick={logout} >Logout</Button>
+                  <Button size='small' variant="contained" sx={{backgroundColor:'#ed1f6e',marginRight:'40px',marginLeft:'20px'}} className={classes.logout} onClick={logout} >Logout</Button>
              </div>
         ) : (
                <Button  size="medium" component={Link} to="/auth" variant="contained" color="primary">Sign In</Button>
