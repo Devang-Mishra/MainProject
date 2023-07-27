@@ -4,12 +4,14 @@ import * as api from '../api';
 //below is the syntax for using redux thunk when we have to perform some aysnchronous actio like fetching post .the syntax is we pass another aysnchronous arrow function with dispatch as parameter and inside the action creator we will dispatch the action instead of return it
  export const getPosts= () => async (dispatch) => {
     try
-    {
+    {   
+        // dispatch({ type: 'START_LOADING' });
         const {data}= await api.fetchPosts();
         dispatch({
             type: 'FETCH_ALL',
             payload: data,
         })
+        // dispatch({ type: 'END_LOADING' });
     }
     catch(error)
     {
@@ -19,13 +21,17 @@ import * as api from '../api';
 
 export const getPost= (id) => async (dispatch) => {
     try
-    {
+    {   
+        dispatch({ type: 'START_LOADING' });
+
         const {data}= await api.fetchPost(id);
         // console.log(data);
         dispatch({
             type: 'FETCH_POST',
             payload: data,
         })  
+        dispatch({ type: 'END_LOADING' });
+
     }
     catch(error)
     {

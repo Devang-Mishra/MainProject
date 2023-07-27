@@ -5,7 +5,7 @@ import { useSelector } from 'react-redux';
 import { Grid,CircularProgress } from '@mui/material';
 const Posts = ({setcurrentId}) => {
   
-  const posts=useSelector((state)=> state.posts)
+  const {post,posts,isLoading}=useSelector((state)=> state.posts)
   const classes=useStyles()  
   
   return (

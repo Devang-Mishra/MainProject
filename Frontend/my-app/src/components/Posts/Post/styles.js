@@ -1,6 +1,6 @@
 import { makeStyles } from '@mui/styles';
 
-export default makeStyles({
+export default makeStyles((theme)=>({
   media: {
     height: 0,
     paddingTop: '56.25%',
@@ -34,7 +34,7 @@ export default makeStyles({
   },
   overlay3: {
     position: 'absolute',
-    top:'120px',
+    top:'125px',
     // right:'150px'
   },
   grid: {
@@ -53,4 +53,11 @@ export default makeStyles({
     display: 'flex',
     justifyContent: 'space-between',
   },
-});
+  [theme.breakpoints.down('sm')]:{
+   
+    overlay3: {
+      position: 'absolute',
+      top:'105px'
+    },
+   }
+}));
