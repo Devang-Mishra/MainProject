@@ -14,7 +14,7 @@ const Form = ({currentId,setcurrentId}) => {
   const classes=useStyles()
   const dispatch=useDispatch()
   const [postData,setpostData]=useState({title:'',message:'',tags:'',selectedFile:''})
-  const post=useSelector((state) => (currentId? state.posts.find((p) => p._id === currentId):null));//here we are getting the post from posts state when we already have postid related to tha post otherwise we get null
+  const post=useSelector((state) => (currentId? state.posts.posts.find((p) => p._id === currentId):null));//here we are getting the post from posts state when we already have postid related to tha post otherwise we get null
   useEffect(()=>{
     if(post) setpostData(post);
   },[post])
