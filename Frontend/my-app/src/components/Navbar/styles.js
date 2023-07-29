@@ -60,6 +60,9 @@ export default makeStyles((theme) => ({
     userName:{
       display: 'none'  
     }
-    
+    ,
+    purple:{
+      marginLeft:'40px'
+    }
    }
 }));
