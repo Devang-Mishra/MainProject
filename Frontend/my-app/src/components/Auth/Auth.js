@@ -100,7 +100,7 @@ const Auth = () => {
           <Grid container justifyContent='center'>
              <Grid item>
                 <Button sx={{color:'#6e6a6c',marginTop:'5px', fontSize: '12px'}} onClick={switchMode}>
-                 {isSignup? 'Already have an accoint? Sign In' : "Don't have an account? Sign Up"}
+                 {isSignup? 'Already have an account? Sign In' : "Don't have an account? Sign Up"}
                 </Button>
              </Grid>
           </Grid>

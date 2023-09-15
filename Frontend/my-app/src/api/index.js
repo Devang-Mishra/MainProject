@@ -1,8 +1,8 @@
 import axios from 'axios'
 
 // const url='http://localhost:8000/posts';
-
-const API=axios.create({baseURL: 'https://postback.onrender.com'});
+const API_ENDPOINT='https://postback.onrender.com'
+const API=axios.create({baseURL: API_ENDPOINT});
 
 API.interceptors.request.use((req)=> { 
    if(localStorage.getItem('profile')) {

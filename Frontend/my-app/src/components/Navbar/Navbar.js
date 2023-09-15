@@ -14,7 +14,7 @@ const Navbar = () => {
   const navigate=useNavigate();
   const location=useLocation();
   const logout=()=>{
-      dispatch({type:'LOGOUT'});
+      dispatch({type:'LOGOUT'});     
       navigate('/auth');
       setUser(null);
   }
@@ -33,11 +33,11 @@ const Navbar = () => {
     <AppBar className={classes.appBar} position="static" color="inherit">
       <Toolbar>
       
-        <Typography component="a" href='/' className={classes.heading} sx={{ typography: {sm:'h2',xs:'h5'}, flexGrow:1,marginRight:'40px'}} >
+        <Typography component="a" href='/'  sx={{ flexGrow:1,marginRight:'40px'}} >
         <img src={textlogo} className={classes.textlogo} alt="PostEra" />
         
         </Typography>
-         
+                        
         
         {user? (
              <div className={classes.profile}>

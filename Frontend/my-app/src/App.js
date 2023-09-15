@@ -14,7 +14,7 @@ const App = () => {
       <GoogleOAuthProvider clientId='941031622187-dur7fq1fan36vbre1gjel1304c9nrog3.apps.googleusercontent.com'>
        <BrowserRouter>
           <Container maxWidth='lg'>
-            <Navbar/> 
+            <Navbar/>  
                <Routes>
                   <Route path='/' element={<Home/>}/>
                   <Route path='/auth' element={<Auth/>}/>
