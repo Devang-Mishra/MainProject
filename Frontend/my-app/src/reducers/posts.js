@@ -12,15 +12,15 @@ const postsreducer= (state = {isLoading:true,posts: [],} ,action)=>{
        case 'DELETE' :
           return {...state,posts:state.posts.filter((post) => post._id !== action.payload )};
        case 'UPDATE' :
-         return {...state,posts:state.posts.map((post)=> (post._id === action.payload._id) ? action.payload : post)};
+          return {...state,posts:state.posts.map((post)=> (post._id === action.payload._id) ? action.payload : post)};
        case 'FETCH_ALL':                    
-         return {...state,posts:action.payload};
+          return {...state,posts:action.payload};
        case 'FETCH_POST':
-         return {...state,post:action.payload};
+          return {...state,post:action.payload};
        case 'CREATE':
-         return {...state,posts:[...state.posts,action.payload]};
+          return {...state,posts:[...state.posts,action.payload]};
        default:
-         return state;     
+          return state;     
    }
 }
 

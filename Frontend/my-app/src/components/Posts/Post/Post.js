@@ -32,14 +32,14 @@ const Post = ({post ,setcurrentId}) => {
    return <><ThumbUpAltOutlined fontSize="small" />&nbsp;Like</>;
     
    
-};
+  };
   
   const openPost=()=> navigate(`/posts/${post._id}`);
   return (
-      <Card sx={{borderRadius: 3.5}} className={classes.card} raised elevation={6} >
-  
-        <CardMedia className={classes.media} image={post.selectedFile} title={post.title}/>
+      <Card sx={{borderRadius: 3.5}} className={classes.card} raised elevation={6}>
       
+        <CardMedia className={classes.media} image={post.selectedFile} title={post.title}/>
+        
   
          <div className={classes.overlay}>
             <Typography variant="h6">{post.name}</Typography>
@@ -49,7 +49,7 @@ const Post = ({post ,setcurrentId}) => {
               <LaunchTwoToneIcon  fontSize='small'/>
               </ButtonBase>
             </div>
-         </div>
+         </div> 
          {(user?.result?.sub === post?.creator || user?.result?._id === post?.creator ) && (
           <div className={classes.overlay2}>
              <Button style={{color:'white'}} size="medium" onClick={()=>{setcurrentId(post._id)}}>

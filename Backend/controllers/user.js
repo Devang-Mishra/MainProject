@@ -36,7 +36,6 @@ export const signup=async (req,res) =>{
             const result=await User.create({email,password: hashedPassword,name:`${firstName} ${lastName}`})
             
             const token = jwt.sign({email:result.email ,id:result._id},'test',{expiresIn: '1h'})//generating json web token by encoding the data provided  using jwt.sign() funciton and setting 'test' as a secret key to verify the token when it is decoded somewhere
-            
             res.status(200).json({result,token});
         } catch (error) {
             res.status(500).json({message: 'Something went wrong.'})

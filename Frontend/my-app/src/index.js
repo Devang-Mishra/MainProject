@@ -16,7 +16,7 @@ const store=createstore(reducers,compose(applyMiddleware(thunk)))
 
 
 ReactDOM.render(
-    <ThemeProvider theme={theme}>
+    <ThemeProvider theme={theme}> 
     <Provider store={store}>
     <App/>
     </Provider>
